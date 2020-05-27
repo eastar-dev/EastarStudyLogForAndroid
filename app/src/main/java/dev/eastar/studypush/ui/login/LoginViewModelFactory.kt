@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.eastar.studypush.data.LoginDataSource
 import dev.eastar.studypush.data.LoginRepository
+import smart.net.Net
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -16,7 +17,7 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
                 loginRepository = LoginRepository(
-                    dataSource = LoginDataSource()
+                    dataSource = Net.create()
                 )
             ) as T
         }
