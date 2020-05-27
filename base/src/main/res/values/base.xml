@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Study Push</string>
+
+    <drawable name="white">#fff</drawable>
+    <drawable name="black">#000</drawable>
+    <drawable name="transparent">#0000</drawable>
+
+    <color name="transparent">#0000</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+
+    <dimen name="title">60dp</dimen>
+    <dimen name="margin_activity">24dp</dimen>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="space">8dp</dimen>
+
+    <dimen name="h1">22sp</dimen>
+    <dimen name="h2">19sp</dimen>
+    <dimen name="h3">17sp</dimen>
+    <dimen name="h4">15sp</dimen>
+    <dimen name="h5">13sp</dimen>
+
+    <color name="purple200">#BB86FC</color>
+    <color name="purple500">#6200EE</color>
+    <color name="purple700">#3700B3</color>
+    <color name="teal200">#03DAC5</color>
+
+    <color name="primary">@color/purple500</color>
+    <color name="primary_dark">@color/purple700</color>
+    <color name="primary_light">@color/purple200</color>
+    <color name="accent">@color/teal200</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+</resources>
+
+
