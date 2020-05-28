@@ -14,7 +14,7 @@ object Net {
     private const val connectTimeout: Long = 10                // ConnectTimeout Default 180
     private const val writeTimeout: Long = 300                 // WriteTimeout Default 180
     private const val readTimeout: Long = 300                  // ReadTimeout Default 180
-    val okHttpClient by lazy {
+    private val okHttpClient by lazy {
         okHttpClientBuilder().apply {
             connectTimeout(connectTimeout, TimeUnit.SECONDS)
             writeTimeout(writeTimeout, TimeUnit.SECONDS)
