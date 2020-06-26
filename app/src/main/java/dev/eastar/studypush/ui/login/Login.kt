@@ -4,17 +4,15 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jakewharton.rxbinding2.widget.RxTextView
 import dev.eastar.ktx.toast
-import dev.eastar.operaxinterceptor.event.OperaXEvent
 import dev.eastar.operaxinterceptor.event.OperaXEventObservable
-import dev.eastar.operaxinterceptor.event.OperaXEventObserver
 import dev.eastar.operaxinterceptor.event.OperaXEvents
 import dev.eastar.studypush.R
+import dev.eastar.studypush.base.STUDY_GROUP
 import dev.eastar.studypush.databinding.LoginBinding
 import smart.base.BActivity
 
@@ -91,7 +89,7 @@ class Login : BActivity() {
 
     override fun login() {
         bb.loading.visibility = View.VISIBLE
-        loginViewModel.login(bb.studyGroup.text.toString(), bb.username.text.toString(), bb.password.text.toString())
+        loginViewModel.login(STUDY_GROUP, bb.username.text.toString(), bb.password.text.toString())
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

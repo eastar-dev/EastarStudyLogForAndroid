@@ -1,4 +1,4 @@
-package dev.eastar.studypush
+package dev.eastar.daystudylog
 
 import org.junit.Test
 
@@ -12,6 +12,13 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+
+
+
+        val str  = ""
+        assertNotNull("null 이 아니여야만 함", str)
+
+        val nullStr : String?  = null
+        assertNull("null 이여야만 함", nullStr)
     }
 }
