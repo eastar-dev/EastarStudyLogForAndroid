@@ -1,8 +1,6 @@
 package dev.eastar.studypush.data
 
-import smart.net.Net
-
-class StudyRepository(val dataSource: StudyDataSource = Net.create()) {
+class StudyRepository(private val dataSource: StudyDataSource) {
     fun getStudyList(millisecond: Long = System.currentTimeMillis()) {
         dataSource.getStudyItems(3, millisecond)
     }

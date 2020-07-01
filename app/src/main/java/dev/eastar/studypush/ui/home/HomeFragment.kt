@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
+import dagger.hilt.android.AndroidEntryPoint
 import dev.eastar.studypush.databinding.FragmentHomeBinding
-import javax.inject.Inject
 
+//@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    //@Inject
-    //lateinit var analytics: AnalyticsAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
