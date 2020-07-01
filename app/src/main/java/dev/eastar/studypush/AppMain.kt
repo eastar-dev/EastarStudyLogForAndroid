@@ -8,11 +8,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import dev.eastar.ktx.startActivity
 import dev.eastar.studypush.ui.login.Login
 import smart.base.BActivity
 import smart.base.PP
 
+@AndroidEntryPoint
 class AppMain : BActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
