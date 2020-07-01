@@ -13,7 +13,6 @@ class AppMainViewModel @ViewModelInject constructor(
     private val repository: StudyRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     private val _text = MutableLiveData<String>().apply {
         value = "This is AppMain Activity"
     }
@@ -30,7 +29,6 @@ class AppMainViewModel @ViewModelInject constructor(
 
             launch {
             }
-
         }
     }
 }

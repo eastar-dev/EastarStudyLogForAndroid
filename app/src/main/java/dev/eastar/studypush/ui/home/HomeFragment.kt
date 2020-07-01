@@ -10,20 +10,19 @@ import androidx.lifecycle.*
 import dagger.hilt.android.AndroidEntryPoint
 import dev.eastar.studypush.databinding.FragmentHomeBinding
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
-
-    private lateinit var binding: FragmentHomeBinding
-    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var bb: FragmentHomeBinding
+    private val vm: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textHome.text = it
+        bb = FragmentHomeBinding.inflate(inflater)
+        vm.text.observe(viewLifecycleOwner, Observer {
+            bb.textHome.text = it
         })
 
         lifecycle.addObserver(observer)
@@ -32,7 +31,12 @@ class HomeFragment : Fragment() {
 
         }
 
-        return binding.root
+        return bb.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vm.onLoad()
     }
 
     private val observer: LifecycleObserver = object : LifecycleObserver {
