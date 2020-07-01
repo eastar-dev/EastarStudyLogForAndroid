@@ -2,6 +2,7 @@ package dev.eastar.studypush.data
 
 import dev.eastar.studypush.data.model.StudyItemList
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 /**
@@ -9,8 +10,9 @@ import retrofit2.http.POST
  */
 
 interface StudyDataSource {
+    @FormUrlEncoded
     @POST("item")
-    fun getStudyItems(
+    suspend fun getStudyItems(
         @Field("size") size: Int,
         @Field("millisecond") millisecond: Long = System.currentTimeMillis()
     ): StudyItemList

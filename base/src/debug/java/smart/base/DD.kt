@@ -35,7 +35,7 @@ object DD {
         logInfo(context)
         displayInfo(context)
         setWebContentsDebuggingEnabled()
-        uncaughtExceptionHandler()
+        //uncaughtExceptionHandler()
         //Session.addRef()
 //        hashkeyForDaumMap(context)
 //        sacnFolder(context.filesDir.parentFile, "")

@@ -9,7 +9,7 @@ import android.log.Log
 /** 기본설정은 운영기준*/
 object NN {
 
-    @JvmField var HOST             = "https://localhost"
+    @JvmField var HOST             = "http://10.0.2.2:18080"
     @JvmField var Authorization    = "key=AAAA-X6hxEw:APA91bF4HfB1HH-xEZm92DEvGfptstiykL9SSYEZOnP4-1iCLTDLttpZQVPJH5rm5uednhRhAQIYSTeQON0joiEwYWTsfjqYO0-XsvXDvX4vRp-p1W7JvBrLymscG3mEBZUdDuycxxoT"
 
 
@@ -33,11 +33,11 @@ object NN {
     fun apply(context: Context, lastServer: BN) {
         when (lastServer) {
             BN.REAL -> {
-                HOST             = "https://localhost"
+                HOST             = "http://10.0.2.2:18080"
                 Authorization    = "key=AAAA-X6hxEw:APA91bF4HfB1HH-xEZm92DEvGfptstiykL9SSYEZOnP4-1iCLTDLttpZQVPJH5rm5uednhRhAQIYSTeQON0joiEwYWTsfjqYO0-XsvXDvX4vRp-p1W7JvBrLymscG3mEBZUdDuycxxoT"
             }
             BN.DEV -> {
-                HOST             = "https://localhost:18080"
+                HOST             = "http://10.0.2.2:18080"
                 Authorization    = "key=AAAA-X6hxEw:APA91bF4HfB1HH-xEZm92DEvGfptstiykL9SSYEZOnP4-1iCLTDLttpZQVPJH5rm5uednhRhAQIYSTeQON0joiEwYWTsfjqYO0-XsvXDvX4vRp-p1W7JvBrLymscG3mEBZUdDuycxxoT"
             }
         }

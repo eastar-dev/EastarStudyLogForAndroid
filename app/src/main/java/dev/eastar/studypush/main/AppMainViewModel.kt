@@ -5,10 +5,13 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import dev.eastar.studypush.data.StudyRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class AppMainViewModel @ViewModelInject constructor(private val repository: StudyRepository,
-                                                    @Assisted private val savedStateHandle: SavedStateHandle
+class AppMainViewModel @ViewModelInject constructor(
+    private val repository: StudyRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
@@ -18,8 +21,16 @@ class AppMainViewModel @ViewModelInject constructor(private val repository: Stud
 
     fun onLoad() {
         viewModelScope.launch {
-            Log.e()
-            repository.getStudyList()
+            Log.e(repository)
+            val studyList = withContext(Dispatchers.IO) {
+                repository.getStudyList()
+            }
+            Log.e(studyList)
+            _text.postValue(studyList.toString())
+
+            launch {
+            }
+
         }
     }
 }
