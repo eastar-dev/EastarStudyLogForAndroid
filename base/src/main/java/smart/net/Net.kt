@@ -1,8 +1,6 @@
 package smart.net
 
-//import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import smart.base.NN
@@ -30,7 +28,7 @@ object Net {
             addConverterFactory(ScalarsConverterFactory.create())      // Respone String
             client(okHttpClient)
         }.build()
-            //addCallAdapterFactory(RxJava2CallAdapterFactory.create())  // RxJava Adapter
+        //addCallAdapterFactory(RxJava2CallAdapterFactory.create())  // RxJava Adapter
     }
 
     inline fun <reified T> create(): T = retrofit.create(T::class.java)

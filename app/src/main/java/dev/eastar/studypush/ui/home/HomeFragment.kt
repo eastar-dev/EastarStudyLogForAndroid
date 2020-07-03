@@ -4,28 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import dev.eastar.studypush.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
+import dagger.hilt.android.AndroidEntryPoint
+import dev.eastar.studypush.databinding.FragmentHomeBinding
+import smart.base.BFragment
 
-class HomeFragment : Fragment() {
-
-    private lateinit var homeViewModel: HomeViewModel
+@AndroidEntryPoint
+class HomeFragment : BFragment() {
+    private lateinit var bb: FragmentHomeBinding
+    private val vm: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    ): View? = FragmentHomeBinding.inflate(inflater).also { bb = it }.root
+
+    override fun onLoadOnce() {
+        super.onLoadOnce()
+        vm.text.observe(viewLifecycleOwner) {
+            bb.textHome.text = it
+        }
     }
 }

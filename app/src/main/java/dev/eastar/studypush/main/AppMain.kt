@@ -1,23 +1,25 @@
-package dev.eastar.studypush
+package dev.eastar.studypush.main
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
+import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import dev.eastar.ktx.startActivity
-import dev.eastar.studypush.ui.login.Login
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
+import dev.eastar.studypush.R
+import dev.eastar.studypush.databinding.AppMainBinding
 import smart.base.BActivity
-import smart.base.PP
 
+@AndroidEntryPoint
 class AppMain : BActivity() {
+    private lateinit var bb: AppMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.app_main)
+        bb = AppMainBinding.inflate(layoutInflater)
+        setContentView(bb.root)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
@@ -31,7 +33,7 @@ class AppMain : BActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        if (PP.userId.isBlank())
-            startActivity(Login::class.java)
+        //if (PP.userId.isBlank())
+        //    startActivity(Login::class.java)
     }
 }

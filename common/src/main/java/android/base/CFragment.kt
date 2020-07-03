@@ -39,26 +39,25 @@ abstract class CFragment : LogFragment() {
         updateUI()
     }
 
-    fun parseExtra() =
-        kotlin.runCatching { onParseExtra() }.onFailure { Log.printStackTrace(it) }.let { Unit }
-
-    fun loadOnce() = onLoadOnce()
-    fun updateUI() =
-        kotlin.runCatching { onUpdateUI() }.onFailure { Log.printStackTrace(it) }.let { Unit }
-
-    fun clear() =
-        kotlin.runCatching { onClear() }.onFailure { Log.printStackTrace(it) }.let { Unit }
-
+    var mIsLoading = false
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun parseExtra(): Unit = kotlin.runCatching { onParseExtra() }.getOrElse { Log.printStackTrace(it) }
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun loadOnce(): Unit = onLoadOnce()
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun updateUI(): Unit = kotlin.runCatching { onUpdateUI() }.getOrElse { Log.printStackTrace(it) }
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun clear(): Unit = kotlin.runCatching { onClear() }.getOrElse { Log.printStackTrace(it) }
+    @Suppress("MemberVisibilityCanBePrivate")
     fun reload() {
         clear()
         load()
     }
-
-    var mIsLoading = false
-    protected fun load() {
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun load() {
         if (mIsLoading) return
         if (lifecycle.currentState === Lifecycle.State.DESTROYED) return
-        kotlin.runCatching { onLoad() }.onFailure { Log.printStackTrace(it) }
+        kotlin.runCatching { onLoad() }.getOrElse { Log.printStackTrace(it) }
     }
 
     protected open fun onParseExtra() {}
