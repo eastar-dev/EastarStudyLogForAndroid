@@ -12,7 +12,7 @@ import dev.eastar.studypush.databinding.FragmentNotificationsBinding
 class NotificationsFragment : Fragment() {
 
     private lateinit var binding: FragmentNotificationsBinding
-    private val notificationsViewModel by viewModels<NotificationsViewModel>()
+    private val notificationsViewModel: NotificationsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

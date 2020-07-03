@@ -14,22 +14,18 @@ class HomeViewModel @ViewModelInject constructor(
     private val repository: StudyRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
+    private val _text = MutableLiveData<String>().apply { value = "This is home Fragment" }
     val text: LiveData<String> = _text
 
-    fun onLoad() {
+    init {
+        loadStudyList()
+    }
+
+    fun loadStudyList() {
         viewModelScope.launch {
-            Log.e(repository)
-            val studyList = withContext(Dispatchers.IO) {
-                repository.getStudyList()
-            }
+            val studyList = withContext(Dispatchers.IO) { repository.getStudyList() }
             Log.e(studyList)
             _text.postValue(studyList.toString())
-
-            launch {
-            }
         }
     }
 }

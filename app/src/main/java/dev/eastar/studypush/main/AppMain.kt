@@ -14,9 +14,7 @@ import smart.base.BActivity
 
 @AndroidEntryPoint
 class AppMain : BActivity() {
-
     private lateinit var bb: AppMainBinding
-    private val vm: AppMainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +35,5 @@ class AppMain : BActivity() {
 
         //if (PP.userId.isBlank())
         //    startActivity(Login::class.java)
-
-        vm.onLoad()
     }
 }
