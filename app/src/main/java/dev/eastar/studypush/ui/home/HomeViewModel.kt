@@ -4,6 +4,7 @@ import android.log.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.eastar.studypush.data.StudyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +24,14 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun loadStudyList() {
         viewModelScope.launch {
-            val studyList = withContext(Dispatchers.IO) { repository.getStudyList() }
+            val studyList = withContext(Dispatchers.IO) {
+                kotlin.runCatching {
+                    repository.getStudyList()
+                }.onFailure {
+                    FirebaseCrashlytics.getInstance().log(it.toString())
+                    FirebaseCrashlytics.getInstance().recordException(it)
+                }.getOrElse { it.toString() }
+            }
             Log.e(studyList)
             _text.postValue(studyList.toString())
         }

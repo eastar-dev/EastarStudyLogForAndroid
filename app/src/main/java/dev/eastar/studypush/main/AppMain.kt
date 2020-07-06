@@ -4,10 +4,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.activity.result.launch
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -44,89 +48,40 @@ class AppMain : BActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        startLogin()
+        //startLogin()
     }
 
-
-    companion object {
-        const val REQ_LOGIN = 2000
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.login_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
-    private fun startLogin() {
-        startActivityForResult(Intent(mContext, Login::class.java), REQ_LOGIN)
-    }
-
-    private fun startLoginCallback(success: Boolean) {
-        Toast.makeText(mContext, "$success", Toast.LENGTH_LONG).show()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            REQ_LOGIN -> startLoginCallback(data?.extras?.getBoolean("result") ?: false)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_login -> startLogin().let { true }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
 
-    fun startLogin2() {
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            it.data.toString()
-        }.launch(Intent())
-
-
-
-        registerForActivityResult(
-            object : ActivityResultContract<Unit, FirebaseUser>() {
-                override fun createIntent(context: Context, input: Unit?): Intent {
-                    val providers = arrayListOf(
-                        AuthUI.IdpConfig.EmailBuilder().build(),
-                        AuthUI.IdpConfig.PhoneBuilder().build(),
-                        AuthUI.IdpConfig.GoogleBuilder().build(),
-                        AuthUI.IdpConfig.FacebookBuilder().build(),
-                        AuthUI.IdpConfig.AnonymousBuilder().build(),
-                        AuthUI.IdpConfig.GitHubBuilder().build(),
-                        AuthUI.IdpConfig.TwitterBuilder().build()
-                    )
-
-                    return AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build()
-                }
-
-                override fun parseResult(resultCode: Int, intent: Intent?): FirebaseUser? {
-                    val response = IdpResponse.fromResultIntent(intent)
-                    return when (resultCode) {
-                        Activity.RESULT_OK -> FirebaseAuth.getInstance().currentUser
-                        else -> null
-                    }
-                }
-            })
-        {
-            Toast.makeText(this, "$it", Toast.LENGTH_LONG).show()
-        }.launch(Unit)
-
-        //if (PP.userId.isBlank())
-        //    startActivity(Login::class.java)
+    private fun startLogin() {
+        Toast.makeText(mContext, "startLogin", Toast.LENGTH_SHORT).show()
+        registerForActivityResult(LoginActivityContract()) {
+            Toast.makeText(mContext, "$it", Toast.LENGTH_SHORT).show()
+        }.launch()
     }
-
-    private val launcher: ActivityResultLauncher<Unit> = registerForActivityResult(MonthActivityContract()) {
-        Toast.makeText(this, "$it", Toast.LENGTH_LONG).show()
-    }
-
-
 }
 
-class MonthActivityContract : ActivityResultContract<Unit, FirebaseUser>() {
+class LoginActivityContract : ActivityResultContract<Unit, FirebaseUser>() {
     override fun createIntent(context: Context, input: Unit?): Intent {
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.PhoneBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
-            AuthUI.IdpConfig.FacebookBuilder().build(),
+            //AuthUI.IdpConfig.FacebookBuilder().build(),
             AuthUI.IdpConfig.AnonymousBuilder().build(),
-            AuthUI.IdpConfig.GitHubBuilder().build(),
-            AuthUI.IdpConfig.TwitterBuilder().build()
+            AuthUI.IdpConfig.GitHubBuilder().build()
+            //AuthUI.IdpConfig.TwitterBuilder().build()
         )
 
         return AuthUI.getInstance()
@@ -135,9 +90,7 @@ class MonthActivityContract : ActivityResultContract<Unit, FirebaseUser>() {
             .build()
     }
 
-
     override fun parseResult(resultCode: Int, intent: Intent?): FirebaseUser? {
-        val response = IdpResponse.fromResultIntent(intent)
         return when (resultCode) {
             Activity.RESULT_OK -> FirebaseAuth.getInstance().currentUser
             else -> null
