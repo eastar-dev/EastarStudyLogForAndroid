@@ -12,10 +12,10 @@ android {
     }
     signingConfigs {
         sign {
-            keyAlias 'studypush'
-            keyPassword 'studypush'
+            keyAlias 'studylog'
+            keyPassword 'studylog'
             storeFile file('../release/release.jks')
-            storePassword 'studypush'
+            storePassword 'studylog'
         }
     }
 
@@ -31,13 +31,21 @@ android {
 
 dependencies {
     implementation project(':base')
+
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+
+    // Required only if Facebook login support is required
+    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
+    implementation 'com.facebook.android:facebook-login:7.0.1'
+
+    // Required only if Twitter login support is required
+    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
+    implementation('com.twitter.sdk.android:twitter:3.3.0') {
+        transitive = true
+    }
+
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
-
-
-
-
-
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 

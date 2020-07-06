@@ -7,7 +7,6 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        //빌드속도개선
         minSdkVersion 21
         targetSdkVersion 29
         ndk { abiFilters "armeabi-v7a", "arm64-v8a" }
@@ -15,8 +14,6 @@ android {
     }
 
     androidExtensions.features = ["parcelize"]
-//    dataBinding.enabled = true
-//    viewBinding.enabled = true
     buildFeatures.viewBinding = true
     buildFeatures.dataBinding = true
 
