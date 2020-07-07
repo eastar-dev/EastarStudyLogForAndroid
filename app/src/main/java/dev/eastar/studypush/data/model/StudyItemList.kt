@@ -1,3 +1,3 @@
 package dev.eastar.studypush.data.model
 
-class StudyItemList : ArrayList<StudyItem>()
+typealias StudyItemList = ArrayList<StudyItem>

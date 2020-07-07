@@ -14,20 +14,21 @@ object AA {
         Log.i("login", json)
         FirebaseCrashlytics.getInstance().apply {
             setUserId("custNo")
-            setCustomKey("current_level", "userType.name")
             setCustomKey("last_UI_action", "logged_in")
+            setCustomKey("current_level", "userType.name")
         }
         OperaXEventObservable.notify(OperaXEvents.Logined)
     }
 
     fun logout() {
-        FirebaseCrashlytics.getInstance().setCustomKey("last_UI_action", "logged_out")
         Log.w("logout")
+        FirebaseCrashlytics.getInstance().setCustomKey("last_UI_action", "logged_out")
         OperaXEventObservable.notify(OperaXEvents.Logouted)
     }
 
     fun isLogin(): Boolean = info != null
 
     var info: Info? = null
+
     data class Info(val userId: String?)
 }

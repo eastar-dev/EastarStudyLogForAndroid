@@ -32,11 +32,11 @@ android {
 dependencies {
     implementation project(':base')
 
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 //    implementation 'com.facebook.android:facebook-login:7.1.0'
-//    implementation('com.twitter.sdk.android:twitter:3.3.0') {
-//        transitive = true
-//    }
+//    implementation('com.twitter.sdk.android:twitter:3.3.0') { transitive = true }
 
     implementation 'com.google.dagger:hilt-android:2.28.1-alpha'
     kapt 'com.google.dagger:hilt-android-compiler:2.28.1-alpha'
