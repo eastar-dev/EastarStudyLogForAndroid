@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.HomeFragment">
+
+    <data>
+
+        <variable
+            name="studyitem"
+            type="dev.eastar.studypush.data.model.StudyItem" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="@dimen/margin">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_activity"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin_activity"
+                app:date="@{studyitem.millisecond}"
+                app:dateformat="@{@string/dateformat}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space"
+                android:layout_marginEnd="@dimen/margin_activity"
+                app:layout_constraintBaseline_toBaselineOf="@+id/date"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                tools:text="(완료)" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_activity"
+                android:layout_marginTop="@dimen/space"
+                android:text="@{studyitem.title}"
+                app:layout_constraintEnd_toStartOf="@+id/title_right"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date"
+                app:layout_goneMarginEnd="@dimen/margin_activity"
+                tools:text="@tools:sample/cities" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space"
+                android:layout_marginEnd="@dimen/margin_activity"
+                android:text="@{studyitem.team}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title"
+                tools:text="@tools:sample/cities" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_activity"
+                android:layout_marginTop="@dimen/space"
+                android:text="@{studyitem.content}"
+                app:layout_constraintEnd_toStartOf="@+id/content_right"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_goneMarginEnd="@dimen/margin_activity"
+                tools:text="@tools:sample/cities" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space"
+                android:layout_marginEnd="@dimen/margin_activity"
+                android:text="@{studyitem.username}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/content"
+                tools:text="@tools:sample/cities" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close"
+                android:layout_width="66dp"
+                android:layout_height="50dp"
+                android:paddingEnd="@dimen/margin"
+                android:scaleType="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="#5f00" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

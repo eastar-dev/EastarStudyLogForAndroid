@@ -16,8 +16,6 @@ class HomeViewModel @ViewModelInject constructor(
     private val repository: StudyRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    //private val _text = MutableLiveData<String>().apply { value = "This is home Fragment" }
-    //val text: LiveData<String> = _text
 
     private val studyItems = MutableLiveData<StudyItemList?>()
     val data: LiveData<StudyItemList?> = studyItems
