@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "605162787282-85fu0eai9o7nl3q54cp7d7i2cr9plcd4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.eastar.studypush",
+            "certificate_hash": "39790d909234263f044f48fff5c346f00f9c53a3"
+          }
+        },
+        {
           "client_id": "605162787282-9lvoo6o5as83c0uihahjloq6la7qhd0u.apps.googleusercontent.com",
           "client_type": 3
         }

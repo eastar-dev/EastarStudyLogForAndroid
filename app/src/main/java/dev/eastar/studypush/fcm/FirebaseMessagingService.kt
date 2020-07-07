@@ -1,7 +1,8 @@
 package dev.eastar.studypush.fcm
 
 import android.log.Log
-import com.crashlytics.android.Crashlytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import dev.eastar.ktx.toTimeText
@@ -19,14 +20,14 @@ class FirebaseMessagingService : com.google.firebase.messaging.FirebaseMessaging
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         log(remoteMessage)
-        Crashlytics.log(remoteMessage.toString())
+        FirebaseCrashlytics.getInstance().log(remoteMessage.toString())
         if (remoteMessage.data.isNullOrEmpty())
             return
         PP.isReadedPush = true
 
         CoroutineScope(Dispatchers.Main).launch {
             val internalMessageId = getInternalMessageId(remoteMessage)
-            Crashlytics.log("푸시받음:$internalMessageId[${remoteMessage.data["type"]}]")
+            FirebaseCrashlytics.getInstance().log("푸시받음:$internalMessageId[${remoteMessage.data["type"]}]")
             val data = remoteMessage.data
             val push = Gson().fromJson(data["value"], PushModel::class.java)
             NotificationHelper.sendNotification(applicationContext, push)

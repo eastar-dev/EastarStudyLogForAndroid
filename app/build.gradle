@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply from: '../base.gradle'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'com.google.firebase.crashlytics'// Apply the Crashlytics Gradle plugin
 apply plugin: 'com.google.gms.google-services' // Google Services Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'// Apply the Crashlytics Gradle plugin
 
 android {
     defaultConfig {
@@ -12,10 +12,10 @@ android {
     }
     signingConfigs {
         sign {
-            keyAlias 'studypush'
-            keyPassword 'studypush'
+            keyAlias 'studylog'
+            keyPassword 'studylog'
             storeFile file('../release/release.jks')
-            storePassword 'studypush'
+            storePassword 'studylog'
         }
     }
 
@@ -31,13 +31,15 @@ android {
 
 dependencies {
     implementation project(':base')
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+//    implementation 'com.facebook.android:facebook-login:7.1.0'
+//    implementation('com.twitter.sdk.android:twitter:3.3.0') { transitive = true }
 
-
-
+    implementation 'com.google.dagger:hilt-android:2.28.1-alpha'
+    kapt 'com.google.dagger:hilt-android-compiler:2.28.1-alpha'
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
