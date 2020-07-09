@@ -16,7 +16,7 @@ dependencies {
 
     api 'androidx.webkit:webkit:1.2.0'
     api 'androidx.recyclerview:recyclerview:1.1.0'
-    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta7'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta8'
     api 'androidx.work:work-runtime-ktx:2.3.4'
     api 'androidx.viewpager2:viewpager2:1.0.0'
 

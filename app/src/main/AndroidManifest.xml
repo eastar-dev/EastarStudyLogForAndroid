@@ -22,8 +22,7 @@
         </activity>
         <activity
             android:name=".ui.profile.Profile"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/BTheme.NoActionBar" />
+            android:label="@string/title_activity_profile" />
     </application>
 
 </manifest>
