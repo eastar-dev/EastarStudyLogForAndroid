@@ -20,20 +20,24 @@ class HomeViewModel @ViewModelInject constructor(
     private val studyItems = MutableLiveData<StudyItemList?>()
     val data: LiveData<StudyItemList?> = studyItems
 
+    //val Flow<StudyItem>
+
     init {
         loadStudyList()
     }
 
-    fun loadStudyList() {
+    private fun loadStudyList() {
         viewModelScope.launch {
-            val studyList: StudyItemList? = withContext(Dispatchers.IO) {
-                kotlin.runCatching {
-                    repository.getStudyList()
-                }.onFailure {
-                    FirebaseCrashlytics.getInstance().log(it.toString())
-                    FirebaseCrashlytics.getInstance().recordException(it)
-                }.getOrNull()
-            }
+            val studyList: StudyItemList? = kotlin.runCatching {
+                repository.getStudyList()
+            }.onFailure {
+                Log.printStackTrace(it)
+                FirebaseCrashlytics.getInstance().log(it.toString())
+                FirebaseCrashlytics.getInstance().recordException(it)
+            }.getOrNull()
+
+
+            //val studyList: StudyItemList? = repository.getStudyList()
             Log.e(studyList)
             studyItems.postValue(studyList)
         }

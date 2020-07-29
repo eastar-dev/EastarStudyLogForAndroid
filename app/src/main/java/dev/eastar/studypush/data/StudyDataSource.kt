@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface StudyDataSource {
     @FormUrlEncoded
-    @POST("item")
+    @POST("http://192.168.1.6:18080/item")
     suspend fun getStudyItems(
         @Field("size") size: Int,
         @Field("millisecond") millisecond: Long = System.currentTimeMillis()

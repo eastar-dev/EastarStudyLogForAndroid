@@ -130,7 +130,7 @@ open class CWebView(context: Context, attrs: AttributeSet? = null, defStyleAttr:
     override fun loadUrl(url: String) {
         Log.e(url)
         val extraHeaders = HashMap<String, String>()
-        extraHeaders["Referer"] = getUrl()
+        extraHeaders["Referer"] = getUrl() ?: ""
         super.loadUrl(url, extraHeaders)
     }
 

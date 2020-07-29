@@ -30,13 +30,13 @@ var systemWindowInsetTop: Int = 0
 
 fun Application.easterEgg() = registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
     //@formatter:off
-    override fun onActivityStarted(activity: Activity?) { activity?.easterEgg() }
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {}
-    override fun onActivityDestroyed(activity: Activity?) {}
-    override fun onActivityStopped(activity: Activity?) {}
-    override fun onActivityPaused(activity: Activity?) {}
-    override fun onActivityResumed(activity: Activity?) {}
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
+    override fun onActivityStarted(activity: Activity) { activity.easterEgg() }
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+    override fun onActivityDestroyed(activity: Activity) {}
+    override fun onActivityStopped(activity: Activity) {}
+    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityResumed(activity: Activity) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
     //@formatter:on
 })
 

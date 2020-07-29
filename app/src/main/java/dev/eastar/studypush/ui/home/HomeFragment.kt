@@ -36,13 +36,6 @@ class HomeFragment : BFragment() {
         bb.vm = vm
         return bb.root
     }
-
-    override fun onLoadOnce() {
-        super.onLoadOnce()
-        //vm.text.observe(viewLifecycleOwner) {
-        //    bb.textHome.text = it
-        //}
-    }
 }
 
 @Suppress("unused")

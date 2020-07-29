@@ -1,6 +1,7 @@
 package dev.eastar.studypush.data
 
 import dev.eastar.studypush.data.model.LoggedInUser
+import retrofit2.http.Field
 import retrofit2.http.POST
 import smart.net.Net
 import java.io.IOException
@@ -12,9 +13,9 @@ import java.io.IOException
 interface LoginDataSource {
     @POST("login")
     fun login(
-        @retrofit2.http.Field("studyGroup") studyGroup: String,
-        @retrofit2.http.Field("username") username: String,
-        @retrofit2.http.Field("password") password: String
+        @Field("studyGroup") studyGroup: String,
+        @Field("username") username: String,
+        @Field("password") password: String
     ): LoggedInUser
 
     fun logout()
